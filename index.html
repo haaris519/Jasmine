@@ -8,7 +8,7 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: #000;
+            background: #0a0a1a;
             color: #fff;
             overflow-x: hidden;
             text-align: center;
@@ -30,14 +30,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+            background: linear-gradient(rgba(10, 10, 26, 0.3), rgba(10, 10, 26, 0.5));
             z-index: 1;
         }
         .hero-text {
             position: relative;
             z-index: 2;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, #ff6b8b, #ffffff);
+            background: linear-gradient(45deg, #e0c3fc, #ffffff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -48,12 +48,17 @@
         .love-section {
             padding: 100px 20px;
             font-size: 2rem;
-            background: linear-gradient(135deg, #ff6b8b, #ff9eb4);
+            background: linear-gradient(135deg, #4b3f72, #8e72b4);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .love-section:hover {
+            transform: scale(1.02);
         }
         .love-section:nth-child(even) {
-            background: linear-gradient(135deg, #ff9eb4, #ff6b8b);
+            background: linear-gradient(135deg, #8e72b4, #4b3f72);
         }
         .love-section p {
             opacity: 0;
@@ -61,6 +66,47 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+        .poem {
+            display: none;
+            padding: 40px 20px;
+            font-size: 1.5rem;
+            background: linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9)),
+                        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2') center/cover;
+            color: #fff;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(224, 195, 252, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(224, 195, 252, 0.3);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .poem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(224, 195, 252, 0.2), 
+                rgba(10, 10, 26, 0.8));
+            z-index: 1;
+            pointer-events: none;
+        }
+        .poem p {
+            position: relative;
+            z-index: 2;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(224, 195, 252, 0.3);
+            background: linear-gradient(45deg, #ffffff, #e0c3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         @keyframes fadeIn {
             from { 
@@ -72,52 +118,17 @@
                 transform: translateY(0);
             }
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            background: #000;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.3);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        .gallery-item.pink-outfit {
-            border: 3px solid #ff6b8b;
-        }
-        .gallery-item.black-outfit {
-            border: 3px solid #000;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-        }
         .custom-cursor {
             width: 20px;
             height: 20px;
-            background: #ff6b8b;
+            background: #e0c3fc;
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             mix-blend-mode: difference;
             transition: all 0.1s ease;
             z-index: 9999;
+            box-shadow: 0 0 10px rgba(224, 195, 252, 0.5);
         }
         .custom-cursor.expand {
             transform: scale(2);
@@ -130,44 +141,561 @@
                 font-size: 1.5rem;
                 padding: 50px 20px;
             }
-            .gallery {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-            .gallery-item img {
-                height: 350px;
-            }
             .custom-cursor {
                 display: none;
+            }
+            .poem {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+            .proposal-silhouette {
+                width: 200px;
+                height: 150px;
+            }
+        }
+        .love-section.proposal {
+            background: linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)),
+                        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2') center/cover;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .love-section.proposal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(224, 195, 252, 0.2), 
+                rgba(10, 10, 26, 0.8));
+            z-index: 1;
+            pointer-events: none;
+        }
+        .love-section.proposal:hover {
+            transform: scale(1.02);
+        }
+        .love-section.proposal .section-title,
+        .love-section.proposal p {
+            position: relative;
+            z-index: 3;
+        }
+        .proposal-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,80 C30,80 45,60 50,60 C55,60 70,80 70,80 L70,100 L30,100 Z" fill="black"/><circle cx="50" cy="45" r="12" fill="black"/><path d="M38,45 C38,35 62,35 62,45" fill="none" stroke="black" stroke-width="2"/></svg>') no-repeat center bottom;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        .love-section.proposal p {
+            position: relative;
+            z-index: 3;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #e0c3fc, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .proposal-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+            text-shadow: 0 0 10px rgba(224, 195, 252, 0.5);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100%) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100%) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* Add stars animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+            opacity: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: var(--opacity); }
+        }
+        .first-meet {
+            padding: 100px 20px;
+            font-size: 2rem;
+            background: linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)),
+                        url('https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a') center/cover;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 40px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: none;
+            border-radius: 0;
+        }
+        
+        .swipe-animation {
+            position: absolute;
+            top: 50%;
+            left: -100px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            pointer-events: none;
+            animation: swipeRight 3s ease-in-out infinite;
+        }
+
+        .swipe-animation::before {
+            content: '❤️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0;
+            animation: showHeart 3s ease-in-out infinite;
+        }
+
+        @keyframes swipeRight {
+            0% {
+                left: -100px;
+                width: 80px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+            30% {
+                width: 120px;
+                background: rgba(255, 255, 255, 0.3);
+            }
+            60% {
+                width: 80px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+            100% {
+                left: calc(100% + 100px);
+            }
+        }
+
+        @keyframes showHeart {
+            0%, 20% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            30%, 40% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            50%, 100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .first-meet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(224, 195, 252, 0.1), rgba(10, 10, 26, 0.9));
+            z-index: 1;
+        }
+
+        .first-meet p {
+            position: relative;
+            z-index: 3;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin: 10px 0;
+        }
+        
+        .first-meet-poem {
+            display: none;
+            padding: 40px 20px;
+            font-size: 1.5rem;
+            background: linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9)),
+                        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2') center/cover;
+            color: #fff;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(224, 195, 252, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(224, 195, 252, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .first-meet-poem p {
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(224, 195, 252, 0.3);
+            background: linear-gradient(45deg, #ffffff, #e0c3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .marriage-proposal {
+            padding: 100px 20px;
+            font-size: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                        url('https://images.unsplash.com/photo-1469119674997-c5c76018442d') center/cover;
+            position: relative;
+            overflow: hidden;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 40px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: none;
+            border-radius: 0;
+        }
+
+        .marriage-proposal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 198, 112, 0.2) 0%,
+                rgba(255, 87, 51, 0.3) 50%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+            z-index: 1;
+        }
+
+        .proposal-scene {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 400'%3E%3Cpath d='M0,400 L1000,400 L1000,200 C900,220 800,180 700,190 C600,200 500,150 400,170 C300,190 200,160 100,180 L0,200 Z' fill='black' opacity='0.8'/%3E%3C/svg%3E") no-repeat bottom center;
+            background-size: cover;
+            z-index: 2;
+        }
+
+        .proposal-silhouette {
+            position: absolute;
+            bottom: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M35,70 C35,70 45,50 50,50 C55,50 65,70 65,70 L65,85 L35,85 Z' fill='black'/%3E%3Ccircle cx='50' cy='40' r='8' fill='black'/%3E%3Cpath d='M30,70 Q50,30 70,70' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") no-repeat center bottom;
+            z-index: 3;
+            opacity: 0.95;
+            filter: brightness(0);
+        }
+
+        .proposal-silhouette::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M40,75 L60,75 L60,45 C60,35 40,35 40,45 Z M45,35 C45,25 55,25 55,35' fill='black'/%3E%3C/svg%3E") no-repeat center;
+            transform: translate(-50%, -50%) scale(0.8);
+            z-index: 2;
+            opacity: 0.95;
+        }
+
+        .marriage-proposal .section-title {
+            background: linear-gradient(45deg, #ffd700, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 4;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffd700, 0 0 20px #ffd700;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700;
+            }
+        }
+
+        .marriage-proposal p:not(.section-title) {
+            background: linear-gradient(45deg, #ffd700, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 4;
+            margin-bottom: 300px;
+        }
+
+        .floating-ring {
+            position: absolute;
+            bottom: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            z-index: 4;
+            animation: floatRing 3s ease-in-out infinite;
+        }
+
+        @keyframes floatRing {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .marriage-poem {
+            display: none;
+            padding: 40px 20px;
+            font-size: 1.5rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('https://images.unsplash.com/photo-1469119674997-c5c76018442d') center/cover;
+            color: #fff;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(255, 166, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 166, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marriage-poem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 166, 0, 0.1) 0%,
+                rgba(255, 87, 51, 0.2) 50%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+            z-index: 1;
+        }
+
+        .marriage-poem p {
+            position: relative;
+            z-index: 2;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 166, 0, 0.3);
+            background: linear-gradient(45deg, #ffffff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #e0c3fc, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .first-meet {
+                min-height: 400px;
+                padding: 50px 20px;
+            }
+            .marriage-proposal {
+                min-height: 500px;
+            }
+            .proposal-silhouette {
+                width: 200px;
+                height: 200px;
+                bottom: 20%;
+            }
+            .proposal-scene {
+                height: 300px;
+            }
+            .marriage-proposal p:not(.section-title) {
+                margin-bottom: 200px;
+            }
+            .floating-ring {
+                bottom: 40%;
             }
         }
     </style>
 </head>
 <body>
+    <div class="stars" id="stars"></div>
     <div class="custom-cursor"></div>
     <div class="hero">
-        <div class="hero-text">Afreen, My Love</div>
+        <div class="hero-text section-title">Afreen, My Love</div>
     </div>
-    <div class="love-section">
-        <p>Your beauty radiates in every color - from delicate pink to bold black, you shine in everything.</p>
+    <div class="first-meet" onclick="toggleFirstMeetPoem()">
+        <div class="proposal-hearts" id="firstMeetHearts"></div>
+        <div class="swipe-animation"></div>
+        <p class="section-title">When I Met You, Afreen</p>
+        <p style="font-size: 1.5rem; font-style: italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">please unblock me</p>
     </div>
-    <div class="love-section">
-        <p>Every moment with you is precious, every smile a treasure that lights up my world.</p>
+    <div class="first-meet-poem" id="firstMeetPoem">
+        <p>I swiped right, just a simple move,<br>
+        Not knowing fate was in the groove.<br>
+        A spark was lit, a tale untold,<br>
+        A story of love, both bright and bold.</p>
+        
+        <p>"Jasmine?" you said, and I took my chance,<br>
+        "Can I be your Aladdin?"—a playful stance.<br>
+        But you thought I was just another tease,<br>
+        Blocked me out, left me in the breeze.</p>
+        
+        <p>Yet something pulled me back to you,<br>
+        A feeling strong, a love so true.<br>
+        I sent a request, heart open wide,<br>
+        This time, you let me step inside.</p>
+
+        <p>We talked, we laughed, you called me fake,<br>
+        But your voice was real—no more mistake.<br>
+        A 40-minute call, time stood still,<br>
+        My heart whispered, this is real.</p>
+
+        <p>Your voice, your laugh, your teasing tone,<br>
+        Turned my heart into your own.<br>
+        And in that moment, clear as the sky,<br>
+        I knew you were my reason why.</p>
+
+        <p>Afreen, my love, my heart's delight,<br>
+        You turned my world from dark to light.<br>
+        From a swipe, to fate, to love so true,<br>
+        I found my forever the day I met you. 💖</p>
     </div>
-    <div class="love-section">
-        <p>Distance may separate us, but our hearts remain forever connected.</p>
+    <div class="love-section proposal" id="whyILoveYou" onclick="togglePoem()">
+        <div class="proposal-hearts" id="proposalHearts"></div>
+        <div class="proposal-silhouette"></div>
+        <p class="section-title">Why I Love You</p>
     </div>
-    <div class="gallery">
-        <div class="gallery-item pink-outfit">
-            <img src="static/images/afreen_pink.jpg" alt="Afreen in Pink" loading="lazy">
-        </div>
-        <div class="gallery-item black-outfit">
-            <img src="static/images/afreen_black.jpg" alt="Afreen in Black" loading="lazy">
-        </div>
+    <div class="poem" id="poem">
+        <p>Afreen, like the moon so bright,<br>
+        You fill my world with endless light.<br>
+        Your laughter sings, your eyes ignite,<br>
+        A love so pure, so infinite.</p>
+        
+        <p>I love you for the way you care,<br>
+        The way your heart is always fair.<br>
+        You see my soul, you hold my dreams,<br>
+        You're softer than the sweetest beams.</p>
+        
+        <p>And oh, Afreen, when you scold,<br>
+        When your anger starts to unfold,<br>
+        Because I stay up way too late,<br>
+        That warmth, that love—I celebrate.</p>
+
+        <p>And when you say you'll beat me too,<br>
+        I giggle hard, oh, if you knew!<br>
+        For even in your playful threat,<br>
+        I find more love, no ounce of regret.</p>
+
+        <p>Afreen, my heart, my endless song,<br>
+        With you, I know, I do belong.<br>
+        So let me love you, night and day,<br>
+        Forevermore, in every way. 💖</p>
+    </div>
+    <div class="marriage-proposal" onclick="toggleMarriagePoem()">
+        <div class="proposal-hearts" id="marriageHearts"></div>
+        <div class="proposal-scene"></div>
+        <div class="proposal-silhouette"></div>
+        <div class="floating-ring">💍</div>
+        <p class="section-title">I Want to Marry You, Afreen</p>
+        <p style="font-size: 1.5rem; font-style: italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); position: relative; z-index: 4;">Will you be mine forever?</p>
+    </div>
+    <div class="marriage-poem" id="marriagePoem">
+        <p>Afreen, my love, my heart's delight,<br>
+        With you, my world feels so right.<br>
+        No more waiting, no more space,<br>
+        I just want to see your face.</p>
+        
+        <p>When you're in the USA, I'll cook for you,<br>
+        Your favorite meals, fresh and new.<br>
+        From morning tea to late-night snacks,<br>
+        I'll take care of you, no looking back.</p>
+
+        <p>I want to hold your hand so tight,<br>
+        Be with you every day and night.<br>
+        Laugh with you and wipe your tears,<br>
+        Stay by your side for all the years.</p>
+
+        <p>Afreen, my love, I say this true,<br>
+        I want to spend my life with you.<br>
+        I love you more than words can say,<br>
+        Forever and always, come what may. 💍❤️</p>
     </div>
     <script>
         const cursor = document.querySelector('.custom-cursor');
-        const links = document.querySelectorAll('a, button, .gallery-item');
+        const links = document.querySelectorAll('a, button');
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -192,6 +720,98 @@
             section.style.animationPlayState = 'paused';
             observer.observe(section);
         });
+
+        // Add floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.getElementById('proposalHearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Create hearts periodically
+        setInterval(() => {
+            createHeart('proposalHearts');
+            createHeart('firstMeetHearts');
+            createHeart('marriageHearts');
+        }, 300);
+
+        function togglePoem() {
+            const poem = document.getElementById('poem');
+            const section = document.getElementById('whyILoveYou');
+            
+            if (poem.style.display === 'none' || poem.style.display === '') {
+                poem.style.display = 'block';
+                section.style.background = 'linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)), url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2") center/cover';
+                addSparkles(poem);
+            } else {
+                poem.style.display = 'none';
+                section.style.background = 'linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)), url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2") center/cover';
+            }
+        }
+
+        // Add twinkling stars
+        function createStars() {
+            const stars = document.getElementById('stars');
+            const numberOfStars = 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
+                
+                stars.appendChild(star);
+            }
+        }
+        
+        createStars();
+
+        function toggleFirstMeetPoem() {
+            const poem = document.getElementById('firstMeetPoem');
+            if (poem.style.display === 'none' || poem.style.display === '') {
+                poem.style.display = 'block';
+                addSparkles(poem);
+            } else {
+                poem.style.display = 'none';
+            }
+        }
+
+        function addSparkles(element) {
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.setProperty('--duration', (Math.random() * 2 + 1) + 's');
+                element.appendChild(sparkle);
+            }
+        }
+
+        function toggleMarriagePoem() {
+            const poem = document.getElementById('marriagePoem');
+            if (poem.style.display === 'none' || poem.style.display === '') {
+                poem.style.display = 'block';
+                addSparkles(poem);
+            } else {
+                poem.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html> 
