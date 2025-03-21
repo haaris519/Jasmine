@@ -588,6 +588,79 @@
                 bottom: 40%;
             }
         }
+
+        .music-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(224, 195, 252, 0.2);
+            border: 1px solid rgba(224, 195, 252, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .music-btn:hover {
+            background: rgba(224, 195, 252, 0.3);
+            transform: scale(1.05);
+        }
+
+        .music-icon {
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .music-playlist {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(224, 195, 252, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .music-playlist h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #e0c3fc, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .song-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .song {
+            padding: 15px;
+            background: rgba(224, 195, 252, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-align: left;
+        }
+
+        .song:hover {
+            background: rgba(224, 195, 252, 0.3);
+            transform: translateX(10px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -601,37 +674,73 @@
         <div class="swipe-animation"></div>
         <p class="section-title">When I Met You, Afreen</p>
         <p style="font-size: 1.5rem; font-style: italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">please unblock me</p>
+        <audio id="backgroundMusic" loop>
+            <source src="https://www.chosic.com/wp-content/uploads/2021/04/beautiful-memories-piano.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="toggleMusic" class="music-btn">
+            <span class="music-icon">🎵</span>
+            Play Music
+        </button>
     </div>
     <div class="first-meet-poem" id="firstMeetPoem">
-        <p>I swiped right, just a simple move,<br>
-        Not knowing fate was in the groove.<br>
-        A spark was lit, a tale untold,<br>
-        A story of love, both bright and bold.</p>
+        <p>I swiped right, a chance, a fate,<br>
+        A moment that made my heart wait.<br>
+        On Muzz, our story took its flight,<br>
+        A spark was born that felt so right.</p>
         
-        <p>"Jasmine?" you said, and I took my chance,<br>
-        "Can I be your Aladdin?"—a playful stance.<br>
-        But you thought I was just another tease,<br>
-        Blocked me out, left me in the breeze.</p>
+        <p>You said your name was Jasmine, so bright,<br>
+        And I, with a grin, took my chance that night.<br>
+        "Can I be your Aladdin?" I dared to say,<br>
+        But you thought I was playing and walked away.</p>
         
-        <p>Yet something pulled me back to you,<br>
-        A feeling strong, a love so true.<br>
-        I sent a request, heart open wide,<br>
-        This time, you let me step inside.</p>
+        <p>Blocked in a moment, lost in a thought,<br>
+        Maybe my words were not what you sought.<br>
+        Yet, something in me just couldn't let go,<br>
+        So, I sent a request—one last hello.</p>
 
-        <p>We talked, we laughed, you called me fake,<br>
-        But your voice was real—no more mistake.<br>
-        A 40-minute call, time stood still,<br>
-        My heart whispered, this is real.</p>
+        <p>We spoke again, this time anew,<br>
+        A second chance, just me and you.<br>
+        I took your Insta, bold and brave,<br>
+        And I was serious when I called you fake.</p>
 
-        <p>Your voice, your laugh, your teasing tone,<br>
-        Turned my heart into your own.<br>
-        And in that moment, clear as the sky,<br>
-        I knew you were my reason why.</p>
+        <p>A screenshot as a profile pic? No way!<br>
+        I thought, she can't be real today!<br>
+        But then you called, your voice so loud,<br>
+        You meant to scold, fierce and proud.</p>
 
-        <p>Afreen, my love, my heart's delight,<br>
-        You turned my world from dark to light.<br>
-        From a swipe, to fate, to love so true,<br>
-        I found my forever the day I met you. 💖</p>
+        <p>Yet, as we spoke, the minutes flew,<br>
+        Not just anger—something grew.<br>
+        Forty minutes, heart to heart,<br>
+        In that call, love found its start.</p>
+
+        <p>I fell for you, your fire, your grace,<br>
+        The way emotions lit your face.<br>
+        From that moment, clear and true,<br>
+        Afreen, my love, my heart chose you.</p>
+
+        <p>Through every scold, through every fight,<br>
+        Through endless talks deep in the night.<br>
+        You are my dream, my endless light,<br>
+        With you, my love, all feels right.</p>
+
+        <p>Let time unfold, let fate be true,<br>
+        Because, Afreen, my heart is you. ❤️✨</p>
+
+        <div class="music-playlist">
+            <h3>Our Love Songs</h3>
+            <div class="song-list">
+                <div class="song" onclick="playSong('https://www.chosic.com/wp-content/uploads/2021/04/beautiful-memories-piano.mp3')">
+                    🎵 Beautiful Memories
+                </div>
+                <div class="song" onclick="playSong('https://www.chosic.com/wp-content/uploads/2021/04/sweet-love.mp3')">
+                    🎵 Sweet Love
+                </div>
+                <div class="song" onclick="playSong('https://www.chosic.com/wp-content/uploads/2021/04/romantic-piano.mp3')">
+                    🎵 Romantic Piano
+                </div>
+            </div>
+        </div>
     </div>
     <div class="love-section proposal" id="whyILoveYou" onclick="togglePoem()">
         <div class="proposal-hearts" id="proposalHearts"></div>
@@ -812,6 +921,28 @@
                 poem.style.display = 'none';
             }
         }
+
+        let currentAudio = null;
+
+        function playSong(url) {
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            const audio = new Audio(url);
+            audio.play();
+            currentAudio = audio;
+        }
+
+        document.getElementById('toggleMusic').addEventListener('click', function() {
+            const audio = document.getElementById('backgroundMusic');
+            if (audio.paused) {
+                audio.play();
+                this.innerHTML = '<span class="music-icon">🎵</span> Pause Music';
+            } else {
+                audio.pause();
+                this.innerHTML = '<span class="music-icon">🎵</span> Play Music';
+            }
+        });
     </script>
 </body>
 </html> 
