@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afreen, My Love</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('/static/images/afreen_pink.jpg') no-repeat center center/cover;
+            font-size: 3rem;
+            font-weight: bold;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ff6b8b, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .love-section {
+            padding: 100px 20px;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff6b8b, #ff9eb4);
+            position: relative;
+            overflow: hidden;
+        }
+        .love-section:nth-child(even) {
+            background: linear-gradient(135deg, #ff9eb4, #ff6b8b);
+        }
+        .love-section p {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            background: #000;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.3);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-item.pink-outfit {
+            border: 3px solid #ff6b8b;
+        }
+        .gallery-item.black-outfit {
+            border: 3px solid #000;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #ff6b8b;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            transition: all 0.1s ease;
+            z-index: 9999;
+        }
+        .custom-cursor.expand {
+            transform: scale(2);
+        }
+        @media (max-width: 768px) {
+            .hero {
+                font-size: 2rem;
+            }
+            .love-section {
+                font-size: 1.5rem;
+                padding: 50px 20px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .gallery-item img {
+                height: 350px;
+            }
+            .custom-cursor {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="hero">
+        <div class="hero-text">Afreen, My Love</div>
+    </div>
+    <div class="love-section">
+        <p>Your beauty radiates in every color - from delicate pink to bold black, you shine in everything.</p>
+    </div>
+    <div class="love-section">
+        <p>Every moment with you is precious, every smile a treasure that lights up my world.</p>
+    </div>
+    <div class="love-section">
+        <p>Distance may separate us, but our hearts remain forever connected.</p>
+    </div>
+    <div class="gallery">
+        <div class="gallery-item pink-outfit">
+            <img src="/static/images/afreen_pink.jpg" alt="Afreen in Pink" loading="lazy">
+        </div>
+        <div class="gallery-item black-outfit">
+            <img src="/static/images/afreen_black.jpg" alt="Afreen in Black" loading="lazy">
+        </div>
+    </div>
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a, button, .gallery-item');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.love-section p').forEach(section => {
+            section.style.animationPlayState = 'paused';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html> 
